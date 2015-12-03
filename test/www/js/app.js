@@ -106,14 +106,22 @@ angular.module('starter', ['ionic', 'starter.services', 'ngCordova'])
   $urlRouterProvider.otherwise('/app/events');
 })
 
-.controller('MapCtrl', function($scope, $cordovaGeolocation){
+.controller('MapCtrl', function($scope, $cordovaGeolocation, $ionicLoading){
+
+    ionic.Platform.ready(function(){
+      $ionicLoading.show({
+        template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+    });
 
     var pos = {
                 enableHighAccuracy: true
             };
 
           $cordovaGeolocation.getCurrentPosition(pos).then(function(pos) {
-                $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            var lat = pos.coords.latitude;
+            var long = pos.coords.longitude;
+
+                $scope.position = new google.maps.LatLng(lat, long);
                 console.log(JSON.stringify($scope.position));
                 var mapOptions = {
                     zoom: 15,
@@ -121,42 +129,51 @@ angular.module('starter', ['ionic', 'starter.services', 'ngCordova'])
                     mapTypeId: google.maps.MapTypeId.TERRAIN
                 }
               
-              var map = new google.maps.Map(document.getElementById('map'), mapOptions); 
-              $scope.map = map;             
-
+                var map = new google.maps.Map(document.getElementById('map'), mapOptions); 
+                $scope.map = map;  
+                $ionicLoading.hide();           
 
                 var marker = new google.maps.Marker({
                     map: $scope.map,
                     position: $scope.position,
                     tite: 'Football'
-                    });
+                });
 
                 marker.setMap(map);
-
             }, 
-          function(error) {                    
-                alert('Unable to get location: ' + error.message);
-            }, pos);
+            function(error) {  
+                  $ionicLoading.hide();                  
+                  alert('Unable to get location: ' + error.message);
+              }, pos);
 
-
+        })
 })
 
-.controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal, Events, $stateParams, $location, $http){
+.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $ionicModal, Events, $stateParams, $location, $http){
   
-  var headers = {
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      };
+  // var headers = {
+  //       'Access-Control-Allow-Origin' : '*',
+  //       'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     };
 
       
 
-  //console.log(headers);
-  // $http.get("http://api.deezer.com/artist/27")
-  //.then(function (response) {$scope.names = response.data; alert(JSON.stringify($scope.names));});
-  $http({method: 'GET', url: 'http://api.deezer.com/artist/27', headers: headers
-  });
+  // //console.log(headers);
+  // // $http.get("http://api.deezer.com/artist/27")
+  // //.then(function (response) {$scope.names = response.data; alert(JSON.stringify($scope.names));});
+  // $http({method: 'GET', url: 'http://api.deezer.com/artist/27', headers: headers
+  // });
+
+$http({method: 'GET', url: 'http://djangounchained-dechochernev.c9users.io/api/v1/events/?format=json'})
+      .success(function(data, status, headers, config){
+        $scope.ads = data;
+        alert(JSON.stringify($scope.ads));
+      })
+      .error(function(data, status, headers, config){
+        $log.warn(data);
+      })
 
 
   $ionicSideMenuDelegate.canDragContent(true);
