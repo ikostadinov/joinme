@@ -1,0 +1,20 @@
+<ion-view title="Events">
+    <ion-content>
+    <ion-list>
+     <label class="item item-input">
+	    <i class="icon ion-search placeholder-icon"></i>
+	    <input type="text" placeholder="Search events" ng-model="search.title">
+	  </label>
+      <ion-item class="item item-thumbnail-left" ng-repeat="event in events | filter: search" href="#/app/events/{{event.id}}">
+      	<img ng-src="{{event.image}}">
+        <h2>{{event.title}}</h2>
+        <p>{{event.distance}}km</p>
+
+        <ion-option-button class="button-positive" ng-click="addEvent($index)">
+          Join
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+

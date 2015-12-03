@@ -1,0 +1,84 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+       <button class="button button-icon icon ion-plus" ng-click="createEvent(event)"></button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" >
+    <ion-content>
+
+    <div class="list">
+
+      <div class="item item-avatar" href="#">
+        <img src="http://placehold.it/50x50">
+        <h2>Petko Petkanov</h2>
+      </div>
+
+      <a class="item" menu-close href="#/app">
+        <i class="icon ion-android-calendar"></i>
+        Events
+      </a>
+
+      <a class="item" menu-close href="#/app/my-events">
+        <i class="icon ion-calendar"></i>
+        My events
+      </a>
+
+      <a class="item" menu-close href="#/app/chat">
+        <i class="icon ion-chatbubbles"></i>
+        Chat
+      </a>
+
+      <a class="item" menu-close href="#/app/map">
+        <i class="icon ion-map"></i>
+        Map
+      </a>
+<!-- 
+      <a class="item" menu-close href="#">
+        <i class="icon ion-person-stalker"></i>
+        Friends
+        <span class="badge badge-positive">0</span>
+      </a> -->
+
+
+      <div class="item item-divider">
+        About the app
+      </div>
+
+      <a class="item" menu-close href="#/app/settings" class="positive">
+        <i class="icon ion-wrench"></i>
+        Settings
+      </a>
+
+      <a class="item" menu-close href="#/app/more">
+        <i class="icon ion-information-circled"></i>
+        More
+      </a>
+
+    </div>
+
+    <div class="padding">
+      <button class="button button-block button-positive">LOGOUT</button>
+    </div>
+
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+
+<!-- <ion-side-menus>
+
+ 
+</ion-side-menus> -->
