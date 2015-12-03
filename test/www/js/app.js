@@ -141,8 +141,24 @@ angular.module('starter', ['ionic', 'starter.services', 'ngCordova'])
 
 })
 
-.controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal, Events, $stateParams, $location){
- 
+.controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal, Events, $stateParams, $location, $http){
+  
+  var headers = {
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      };
+
+      
+
+  //console.log(headers);
+  // $http.get("http://api.deezer.com/artist/27")
+  //.then(function (response) {$scope.names = response.data; alert(JSON.stringify($scope.names));});
+  $http({method: 'GET', url: 'http://api.deezer.com/artist/27', headers: headers
+  });
+
+
   $ionicSideMenuDelegate.canDragContent(true);
   $scope.toggleNav = function(){
     $ionicSideMenuDelegate.toggleLeft();
