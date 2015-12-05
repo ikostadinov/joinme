@@ -23,11 +23,11 @@
     <div class="list">
 
       <div class="item item-avatar" href="#">
-        <img src="http://placehold.it/50x50">
-        <h2>Petko Petkanov</h2>
+        <img >
+        <h2>sad</h2>
       </div>
 
-      <a class="item" menu-close href="#/app">
+      <a class="item" menu-close href="#/app/events">
         <i class="icon ion-android-calendar"></i>
         Events
       </a>
@@ -70,15 +70,10 @@
 
     </div>
 
-    <div class="padding">
-      <button class="button button-block button-positive">LOGOUT</button>
+    <div class="padding" ng-controller="LogoutCtrl"> 
+      <button class="button button-block button-positive" ng-click="logout()">LOGOUT</button>
     </div>
 
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
-
-<!-- <ion-side-menus>
-
- 
-</ion-side-menus> -->

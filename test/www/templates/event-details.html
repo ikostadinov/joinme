@@ -1,21 +1,22 @@
-<ion-view view-title="{{event.title}}">
+<ion-view view-title="{{event.name}}">
   <ion-content class="padding">
     <div class="item item-body">
     <img class="full-image" ng-src="{{event.image}}"> <!-- class full-image -->
     <p>
       {{event.description}}
+      {{event.name}}
     </p>
     <p>
       <span>
-        <i class="icon ion-android-pin placeholder-icon"></i>{{event.distance}}km
+        <i class="icon ion-person-stalker placeholder-icon"></i>{{event.capacity}}
       </span>
 
       <span>
-        <i class="icon ion-calendar placeholder-icon"></i>25.12.2015 
+        <i class="icon ion-calendar placeholder-icon"></i>{{event.created | date: 'dd.MM.yyyy'}} 
       </span>
 
       <span>
-        <i class="icon ion-android-time placeholder-icon"></i>21:00PM 
+        <i class="icon ion-android-time placeholder-icon"></i>{{event.created | date: 'HH:mm a'}}
       </span>
     </p>
     <p>

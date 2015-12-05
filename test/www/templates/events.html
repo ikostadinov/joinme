@@ -3,12 +3,13 @@
     <ion-list>
      <label class="item item-input">
 	    <i class="icon ion-search placeholder-icon"></i>
-	    <input type="text" placeholder="Search events" ng-model="search.title">
+	    <input type="text" placeholder="Search events" ng-model="search.name">
 	  </label>
-      <ion-item class="item item-thumbnail-left" ng-repeat="event in events | filter: search" href="#/app/events/{{event.id}}">
+      <ion-item class="item item-thumbnail-left" ng-repeat="event in events | filter: search" href="#/app/events/{{event.uuid}}">
       	<img ng-src="{{event.image}}">
-        <h2>{{event.title}}</h2>
-        <p>{{event.distance}}km</p>
+        <h2>{{event.name}}</h2>
+        <p>{{event.capacity}} people</p>
+        <p>{{event.description}}</p>
 
         <ion-option-button class="button-positive" ng-click="addEvent($index)">
           Join
