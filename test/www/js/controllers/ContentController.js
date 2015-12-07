@@ -1,5 +1,5 @@
-app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $ionicModal, EventsService, $stateParams, $location, $http){
-  
+app.controller('ContentCtrl', function($scope, $log, $interval, $ionicSideMenuDelegate, $ionicModal, EventsService, $stateParams, $location, $http){
+
   // $scope.nickname = $stateParams.data.nickname;
   // $scope.displayPicture = $stateParams.data.displayPicture;
 
@@ -28,6 +28,7 @@ app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $io
 //       })
 
 
+
   $ionicSideMenuDelegate.canDragContent(true);
   $scope.toggleNav = function(){
     $ionicSideMenuDelegate.toggleLeft();
@@ -48,11 +49,25 @@ app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $io
     $scope.modal.hide();
   }
 
-  EventsService.getAllEvents().then(function(resp){
-    $scope.events = resp.data;
-    $scope.event = EventsService.get($stateParams.eventId, $scope.events);
-  });
+  $scope.getEvents = function(){EventsService.getAllEvents().then(function(resp){
+      $scope.events = resp.data;
+      $scope.event = EventsService.get($stateParams.eventId, $scope.events);
+    });
+  }
 
+  $scope.getEvents();
+
+  $interval(function() {$scope.getEvents()}, 500);
+
+  $scope.doRefresh = function(){
+    $http.get('http://djangounchained-dechochernev.c9users.io/api/v1/events/')
+      .success(function(newEvents){
+        $scope.events = newEvents;
+      })
+      .finally(function(){
+        $scope.$broadcast('scroll.refreshComplete');
+      })
+  }
   $scope.myEvents = [
     {
       id: 3,
