@@ -4,18 +4,45 @@
     <button class="button button-icon icon ion-close" ng-click="closeModal()"></button>
   </ion-header-bar>
   <ion-content>
+  <form ng-submit="sendData(event)">
    <div class="list">
     <label class="item item-input item-floating-label">
       <span class="input-label positive">Title</span>
-      <input type="text" placeholder="Title">
+      <input type="text" placeholder="Title" ng-model="event.name">
     </label>
     <label class="item item-input item-floating-label">
       <span class="input-label positive">Description</span>
-      <input type="text" placeholder="Description">
+      <input type="text" placeholder="Description" ng-model="event.description">
+    </label>
+     <label class="item item-input item-floating-label">
+      <span class="input-label positive">Capacity</span>
+      <input type="text" placeholder="Capacity" ng-model="event.capacity">
+    </label>
+     <label class="item item-input item-floating-label">
+      <span class="input-label positive">Status</span>
+      <input type="text" placeholder="Status" ng-model="event.status">
+    </label>
+     <label class="item item-input item-floating-label">
+      <span class="input-label positive">Created</span>
+      <input type="text" value="2015-12-05T22:00:00Z" placeholder="created" ng-model="event.created">
+    </label>
+     <label class="item item-input item-floating-label">
+      <span class="input-label positive">Begin Time</span>
+      <input type="text" value="2015-12-05T22:00:00Z" placeholder="Begin Time" ng-model="event.begin_time">
+    </label>
+     <label class="item item-input item-floating-label">
+      <span class="input-label positive">End Time</span>
+      <input type="text" value="2015-12-05T22:00:00Z" placeholder="End Time" ng-model="event.end_time">
+    </label>
+     <label class="item item-input item-floating-label">
+      <span class="input-label positive">Location</span>
+      <input type="text" placeholder="Location" ng-model="event.location">
     </label>
   </div>
+
   <div class="padding">
-      <button class="button button-block button-positive">Create Event</button>
+      <button class="button button-block button-positive" type="submit">Create Event</button>
   </div>
+   </form>
   </ion-content>
 </ion-modal-view>

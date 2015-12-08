@@ -1,4 +1,4 @@
-app.controller('ContentCtrl', function($scope, $log, $interval, $ionicSideMenuDelegate, $ionicModal, EventsService, $stateParams, $location, $http){
+app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $ionicModal, EventsService, $stateParams, $location, $http){
 
   // $scope.nickname = $stateParams.data.nickname;
   // $scope.displayPicture = $stateParams.data.displayPicture;
@@ -57,7 +57,7 @@ app.controller('ContentCtrl', function($scope, $log, $interval, $ionicSideMenuDe
 
   $scope.getEvents();
 
-  $interval(function() {$scope.getEvents()}, 500);
+  //$interval(function() {$scope.getEvents()}, 500);
 
   $scope.doRefresh = function(){
     $http.get('http://djangounchained-dechochernev.c9users.io/api/v1/events/')
@@ -77,6 +77,26 @@ app.controller('ContentCtrl', function($scope, $log, $interval, $ionicSideMenuDe
       image: 'http://placehold.it/100x100'
     }
   ];
+
+  $scope.sendData = function(event){
+    $http({
+      url: 'http://djangounchained-dechochernev.c9users.io/api/test1/',
+      method: 'POST',
+      contentType: "application/json",
+      data: {
+        name: event.name,
+        capacity: event.capacity,
+        description: event.description,
+        status: event.status,
+        created: event.created,
+        begin_time: event.begin_time,
+        end_time: event.end_time,
+        location: null
+    }
+    }).success(function(data) {
+        alert(event.name + " created successfully!"); 
+    });
+  }
 
   $scope.removeEvent = function(index){
     $scope.myEvents.splice($scope.events[index],1);

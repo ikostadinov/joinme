@@ -2,7 +2,6 @@ app.controller('LoginCtrl', function($scope, $state, $cordovaOauth, $http, login
   
   $scope.signIn = function() {
     $state.go('app.events');
-    loginService.sendData("sadhjashdsa");
   };
 
     $scope.user = {};

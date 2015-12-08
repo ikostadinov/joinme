@@ -9,7 +9,7 @@
 	    <i class="icon ion-search placeholder-icon"></i>
 	    <input type="text" placeholder="Search events" ng-model="search.name">
 	  </label>
-      <ion-item class="item item-thumbnail-left" ng-repeat="event in events track by $index" href="#/app/events/{{event.uuid}}">
+      <ion-item class="item item-thumbnail-left" ng-repeat="event in events | filter: search" href="#/app/events/{{event.uuid}}">
       	<img ng-src="{{event.image}}">
         <h2>{{event.name}}</h2>
         <p>{{event.capacity}} people</p>
