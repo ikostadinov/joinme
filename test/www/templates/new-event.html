@@ -22,22 +22,30 @@
       <span class="input-label positive">Status</span>
       <input type="text" placeholder="Status" ng-model="event.status">
     </label>
-     <label class="item item-input item-floating-label">
+     <label class="item item-input item-label">
       <span class="input-label positive">Created</span>
-      <input type="text" value="2015-12-05T22:00:00Z" placeholder="created" ng-model="event.created">
+      <input type="datetime-local" placeholder="Created" ng-model="event.created">
     </label>
-     <label class="item item-input item-floating-label">
+     <label class="item item-input item-label">
       <span class="input-label positive">Begin Time</span>
-      <input type="text" value="2015-12-05T22:00:00Z" placeholder="Begin Time" ng-model="event.begin_time">
+      <input type="datetime-local" placeholder="Begin Time" ng-model="event.begin_time">
     </label>
-     <label class="item item-input item-floating-label">
+     <label class="item item-input item-label">
       <span class="input-label positive">End Time</span>
-      <input type="text" value="2015-12-05T22:00:00Z" placeholder="End Time" ng-model="event.end_time">
+      <input type="datetime-local" placeholder="End Time" ng-model="event.end_time">
     </label>
      <label class="item item-input item-floating-label">
       <span class="input-label positive">Location</span>
       <input type="text" placeholder="Location" ng-model="event.location">
     </label>
+
+    <div class="padding">
+      <button class="button button-calm icon-left ion-android-camera" ng-click="takePhoto()">Take photo</button>
+       <button class="button button-calm icon-left ion-android-image" ng-click="choosePhoto()">Choose photo</button>
+    </div>
+    <div class="padding">
+       <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" class="full-image">
+    </div>
   </div>
 
   <div class="padding">

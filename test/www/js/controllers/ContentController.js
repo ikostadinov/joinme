@@ -1,4 +1,4 @@
-app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $ionicModal, EventsService, $stateParams, $location, $http){
+app.controller('ContentCtrl', function($scope, $log, $cordovaCamera, $ionicSideMenuDelegate, $ionicModal, EventsService, $stateParams, $location, $http){
 
   // $scope.nickname = $stateParams.data.nickname;
   // $scope.displayPicture = $stateParams.data.displayPicture;
@@ -57,8 +57,6 @@ app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $io
 
   $scope.getEvents();
 
-  //$interval(function() {$scope.getEvents()}, 500);
-
   $scope.doRefresh = function(){
     $http.get('http://djangounchained-dechochernev.c9users.io/api/v1/events/')
       .success(function(newEvents){
@@ -68,6 +66,48 @@ app.controller('ContentCtrl', function($scope, $log, $ionicSideMenuDelegate, $io
         $scope.$broadcast('scroll.refreshComplete');
       })
   }
+
+  $scope.takePhoto = function () {
+    var options = {
+      quality: 75,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function (imageData) {
+      $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    }, function (err) {
+  // An error occured. Show a message to the user
+});
+  }
+
+  $scope.choosePhoto = function () {
+    var options = {
+      quality: 75,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function (imageData) {
+      $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    }, function (err) {
+  // An error occured. Show a message to the user
+});
+  }
+
+
   $scope.myEvents = [
     {
       id: 3,
