@@ -27,6 +27,7 @@ app.controller('MapCtrl', function($scope, $cordovaGeolocation, $ionicLoading){
                 }
               
                 var map = new google.maps.Map(document.getElementById('map'), mapOptions); 
+                console.log(map);
                 $scope.map = map;  
                 $ionicLoading.hide();   
 //BEGIN
@@ -81,4 +82,5 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
             
 
         })
+angular.element(document.querySelector('#map')).html("NewText");
 })
