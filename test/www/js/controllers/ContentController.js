@@ -120,7 +120,7 @@ app.controller('ContentCtrl', function($scope, $log, $cordovaCamera, $ionicSideM
 
   $scope.sendData = function(event){
     $http({
-      url: 'http://djangounchained-dechochernev.c9users.io/api/test1/',
+      url: 'http://djangounchained-dechochernev.c9users.io/api/event_list/',
       method: 'POST',
       contentType: "application/json",
       data: {

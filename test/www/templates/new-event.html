@@ -38,7 +38,12 @@
       <span class="input-label positive">Location</span>
       <input type="text" placeholder="Location" ng-model="event.location">
     </label>
-
+    
+      <input id="pac-input" type="text" class="controls" placeholder="Enter a location" autocomplete="off" style="z-index: 5000; position: absolute; left: 114px; top: 10px;">
+      <div id="map">
+        
+      </div>
+    
     <div class="padding">
       <button class="button button-calm icon-left ion-android-camera" ng-click="takePhoto()">Take photo</button>
        <button class="button button-calm icon-left ion-android-image" ng-click="choosePhoto()">Choose photo</button>
