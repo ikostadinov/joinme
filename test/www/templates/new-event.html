@@ -34,16 +34,15 @@
       <span class="input-label positive">End Time</span>
       <input type="datetime-local" placeholder="End Time" ng-model="event.end_time">
     </label>
-     <label class="item item-input item-floating-label">
+     <label class="item item-input item-stacked-label">
       <span class="input-label positive">Location</span>
-      <input type="text" placeholder="Location" ng-model="event.location">
+      <input id="pac-input" type="text" class="controls" autocomplete="off" ng-model="event.location">
+       <!-- <input type="reset" id="btn_reset" value="" alt="clear" /> -->
     </label>
-    
-     <!-- <input id="pac-input" type="text" class="controls" placeholder="Enter a location" autocomplete="off" style="z-index: 5000; position: absolute; left: 114px; top: 10px;">-->
-     <div ng-controller="MapCtrl">
-      <div id="map">
-        
-      </div>
+    <div id="map" style="height:150px;"></div>
+    <!-- <div ng-controller="MapCtrl"> -->
+         <!-- <input id="pac-input" type="text" class="controls" placeholder="Enter a location" autocomplete="off" style="z-index: 5000; position: absolute; left: 114px; top: 10px;">-->
+         <!-- <input id="pac-input" type="text" class="controls" placeholder="Enter a location" autocomplete="off" style="z-index: 5000; position: absolute; left: 114px; top: 10px; width: 400px; padding-left: 10px;"> -->
     </div>
     <div class="padding">
       <button class="button button-calm icon-left ion-android-camera" ng-click="takePhoto()">Take photo</button>
@@ -60,3 +59,5 @@
    </form>
   </ion-content>
 </ion-modal-view>
+
+

@@ -1,14 +1,9 @@
 app.controller('MapCtrl', function($scope, $cordovaGeolocation, $ionicLoading){
 
-
-
-
-
-
     ionic.Platform.ready(function(){
-      $ionicLoading.show({
-        template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
-    });
+    //   $ionicLoading.show({
+    //     template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+    // });
 
     var pos = {
                 enableHighAccuracy: true
@@ -26,7 +21,7 @@ app.controller('MapCtrl', function($scope, $cordovaGeolocation, $ionicLoading){
                     mapTypeId: google.maps.MapTypeId.TERRAIN
                 }
               
-                var map = new google.maps.Map(document.getElementById('map'), mapOptions); 
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions); 
                 console.log(map);
                 $scope.map = map;  
                 $ionicLoading.hide();   
@@ -82,5 +77,5 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
             
 
         })
-angular.element(document.querySelector('#map')).html("NewText");
+
 })

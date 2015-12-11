@@ -1,3 +1,17 @@
 /* Empty. Add your own CSS if you like */
 .item h2{padding-top:10px;}
 #map{height: 100vh;}
+#btn_reset
+   {
+      background-image: url( http://findicons.com/files/icons/573/must_have/16/delete.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      height: 20px;
+      width: 20px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      position: relative;
+      top: 6px;
+   }
+
