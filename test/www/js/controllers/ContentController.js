@@ -120,10 +120,7 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
                   //     map: $scope.map,
                   //     position: new google.maps.LatLng(lat, lng)
                   // });
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
                   // marker.setPosition(event.latLng);
                   var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
@@ -142,11 +139,7 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
                     }
                   });
                   // input.value = event.latLng;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/master
                   // if($scope.map.marker) $scope.map.marker.setMap(null);
                   // if($scope.map.marker) delete $scope.map.marker;
                   // $scope.map.marker = new google.maps.Marker({
