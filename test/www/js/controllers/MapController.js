@@ -24,7 +24,9 @@ app.controller('MapCtrl', function($scope, $cordovaGeolocation, $ionicLoading){
                 var map = new google.maps.Map(document.getElementById("map"), mapOptions); 
                 console.log(map);
                 $scope.map = map;  
-                $ionicLoading.hide();   
+                $ionicLoading.hide();
+
+               
 //BEGIN
                 var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));

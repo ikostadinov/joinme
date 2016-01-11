@@ -11,10 +11,12 @@ app.controller('LoginCtrl', function($scope, $state, $cordovaOauth, $http, login
             // alert(result.access_token);
             $http.get('https://graph.facebook.com/v2.5/me?fields=id,name,picture,location,gender&access_token=' + result.access_token).success(function(data, status, header, config){
            // $http.get('https://graph.facebook.com/v2.5/me?fields=id,name,picture,location&access_token=CAACEdEose0cBANMzQSjOylmN61GQG6uCAZBZChkU1AehfBeVGWVp87CQmZAiG3aTQULoKrHuSe3XBJD3CYooJEcyRPyqt9uEsCd8NztPqRLqDisUH0WVIWbABZCSnGJFjDiNcjspQ9cdt99WnCtPsS6x0AOvOVlsM6IO86xIdRiEYd7V4PKIqYEHGxlQJpUZCb5ZB71jKVCy9j15o9biVegelYoTvLPtQZD').success(function(data, status, header, config){
+              $scope.user.id = data.id;
+              $scope.token = result.access_token;
               $scope.user.fullName = data.name;
               $scope.user.displayPicture = data.picture.data.url;
               $scope.user.gender = data.gender;
-              alert($scope.user.gender);
+              // alert($scope.user.gender);
               // $scope.user.location = data.location.name;
               // alert($scope.user.location);
               // alert(data.location);
@@ -33,9 +35,9 @@ app.controller('LoginCtrl', function($scope, $state, $cordovaOauth, $http, login
         // loginService.sendData($scope.user.fullName);
         
 
-        // $http.post('http://djangounchained-dechochernev.c9users.io/api/v1/events/', {username: $scope.user.fullName}).then(function(res){
-        //   $scope.response = res;
-        // });
+        $http.post('http://djangounchained-dechochernev.c9users.io/api/v1/events/', {id: $scope.user.id, access_token: $scope.token, username: $scope.user.fullName}).then(function(res){
+          $scope.response = res;
+        });
 
 
         

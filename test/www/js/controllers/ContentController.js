@@ -108,7 +108,7 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
   }).then(function(modal) {
     $scope.modal = modal;
   });
-
+  var marker = null;
   $scope.createEvent = function(event){
     $scope.modal.show();
     var pos = {
@@ -131,6 +131,32 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
                 console.log(map);
                 $scope.map = map;  
                 $ionicLoading.hide();
+
+                 map.addListener('click', function(event){
+
+                  var lat = event.latLng.lat();
+                  var lng = event.latLng.lng();
+
+                  // marker = new google.maps.Marker({
+                  //     map: $scope.map,
+                  //     position: new google.maps.LatLng(lat, lng)
+                  // });
+
+                  marker.setPosition(event.latLng);
+                  var input = /** @type {HTMLInputElement} */(
+      document.getElementById('pac-input'));
+                  input.value = event.latLng;
+
+
+                  // if($scope.map.marker) $scope.map.marker.setMap(null);
+                  // if($scope.map.marker) delete $scope.map.marker;
+                  // $scope.map.marker = new google.maps.Marker({
+                  //   map: $scope.map,
+                  //     position: new google.maps.LatLng(lat, lng)
+                  // })
+                  // marker.setMap(null);
+
+                  }) 
 
                 $scope.geocoder = new google.maps.Geocoder();
                 $scope.geocodeLatLng = function(geocoder, map) {
@@ -282,6 +308,16 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
       image: 'http://placehold.it/100x100'
     }
   ];
+
+   $scope.disableTap = function(){
+    container = document.getElementsByClassName('pac-container');
+    // disable ionic data tab
+    angular.element(container).attr('data-tap-disabled', 'true');
+    // leave input field if google-address-entry is selected
+    angular.element(container).on("click", function(){
+        document.getElementById('pac-input').blur();
+    });
+  }
 
   $scope.sendData = function(event){
     $http({

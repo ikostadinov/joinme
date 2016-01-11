@@ -34,10 +34,11 @@
       <span class="input-label positive">End Time</span>
       <input type="datetime-local" placeholder="End Time" ng-model="event.end_time">
     </label>
+
      <label class="item item-input item-stacked-label">
       <span class="input-label positive">Location</span>
-      <input id="pac-input" type="text" class="controls" autocomplete="off" ng-model="event.location">
-       <!-- <input type="reset" id="btn_reset" value="" alt="clear" /> -->
+      <input id="pac-input" type="text" class="controls" ng-focus="disableTap()" autocomplete="off" ng-model="event.location">
+       <input type="reset" id="btn_reset" value="" alt="clear" />
     </label>
     <div id="map" style="height:150px;"></div>
     <!-- <div ng-controller="MapCtrl"> -->
