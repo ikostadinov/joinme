@@ -35,7 +35,7 @@ app.controller('LoginCtrl', function($scope, $state, $cordovaOauth, $http, login
         // loginService.sendData($scope.user.fullName);
         
 
-        $http.post('http://djangounchained-dechochernev.c9users.io/api/v1/events/', {id: $scope.user.id, access_token: $scope.token, username: $scope.user.fullName}).then(function(res){
+        $http.post('http://djangounchained-dechochernev.c9users.io/api/v1/events/', {access_token: $scope.token}).then(function(res){
           $scope.response = res;
         });
 

@@ -142,10 +142,24 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
                   //     position: new google.maps.LatLng(lat, lng)
                   // });
 
-                  marker.setPosition(event.latLng);
+                  // marker.setPosition(event.latLng);
                   var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
-                  input.value = event.latLng;
+                     $scope.geocoder.geocode({'location': event.latLng}, function(results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                      if (results[1]) {
+                        marker.setPosition(event.latLng);
+                        input.value = results[0].formatted_address;
+                        // infowindow.setContent(results[1].formatted_address);
+                        // infowindow.open(map, marker);
+                      } else {
+                        window.alert('No results found');
+                      }
+                    } else {
+                      window.alert('Geocoder failed due to: ' + status);
+                    }
+                  });
+                  // input.value = event.latLng;
 
 
                   // if($scope.map.marker) $scope.map.marker.setMap(null);
