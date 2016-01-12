@@ -162,6 +162,33 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
                   $scope.geocoder.geocode({'location': latlng}, function(results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
                       addressComponents = results[0].address_components;
+                        var location_obj = {}
+                        for(i=0; i<addressComponents.length; i++){
+                            if("street_number" in addressComponents[i].types){
+                                location_obj.street_number = addressComponents['long_name'];
+                            }
+                            if("route" in addressComponents[i].types){
+                                location_obj.street_name = addressComponents['long_name'];
+                            }
+                            if(["locality", "political"] in addressComponents[i].types){
+                                location_obj.city = addressComponents['long_name'];
+                            }
+
+                            if([ "administrative_area_level_1", "political" ]
+                                in addressComponents[i].types){
+                                location_obj.state = addressComponents['long_name'];
+                            }
+                            if([ "country", "political" ]
+                                in addressComponents[i].types){
+                                location_obj.country = addressComponents['long_name'];
+                            }
+                            if([ "postal_code" ]
+                                in addressComponents[i].types){
+                                location_obj.post_code = addressComponents['long_name'];
+                            }
+
+                        }
+                        console.log(location_obj);
                       galin = results[0].geometry.location;
                       // galin = results[0].location;
 
