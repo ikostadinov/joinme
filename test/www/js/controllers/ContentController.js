@@ -93,6 +93,9 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
     $scope.modal = modal;
   });
   var marker = null;
+  var addressComponents = null;
+  var galin = null;
+
   $scope.createEvent = function(event){
     $scope.modal.show();
     var pos = {
@@ -126,6 +129,9 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
       document.getElementById('pac-input'));
                      $scope.geocoder.geocode({'location': event.latLng}, function(results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
+                      addressComponents = results[0].address_components;
+                      galin = results[0].geometry.location;
+                      // alert(galin);
                       if (results[1]) {
                         marker.setPosition(event.latLng);
                         input.value = results[0].formatted_address;
@@ -155,6 +161,14 @@ angular.element(document.querySelector('#map2')).css({'border':'3px solid blue'}
                   var latlng = $scope.position;
                   $scope.geocoder.geocode({'location': latlng}, function(results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
+                      addressComponents = results[0].address_components;
+                      galin = results[0].geometry.location;
+                      // galin = results[0].location;
+
+                      // for(key in addressComponents){
+                      //   console.log(addressComponents[key]);
+                      // }
+                      console.log("address comp:" );
                       if (results[1]) {
                         $scope.map.setZoom(11);
                         var marker = new google.maps.Marker({
@@ -289,6 +303,12 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
         document.getElementById('pac-input').blur();
     });
   }
+  $scope.checkLocationDet = function(){
+                      for(key in addressComponents){
+                        console.log(addressComponents[key]);
+                      }
+                      console.log("galio: " + galin);
+}
   $scope.sendData = function(event){
     $http({
       url: 'http://djangounchained-dechochernev.c9users.io/api/event_list/',
@@ -303,9 +323,21 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
         begin_time: event.begin_time,
         end_time: event.end_time,
         location: null
+        // {
+        //       'name': addressComponents[0],
+        //       'street': addressComponents[1],
+        //       'postcode': addressComponents[2],
+        //       'country': addressComponents[3],
+        //       'city':addressComponents[4],
+        //       'longitude':addressComponents[5],
+        //       'latitude':addressComponents[6],
+        //       'state':addressComponents[7]
+        //       }
     }
     }).success(function(data) {
         alert(event.name + " created successfully!"); 
+              console.log("location: "+data.location);
+
     });
   }
   $scope.removeEvent = function(index){
